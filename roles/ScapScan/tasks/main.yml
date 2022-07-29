@@ -1,0 +1,93 @@
+---
+#- name: echo some variables
+#  ansible.builtin.debug:
+#    msg: 
+#      - rhel9_use_tailoring_file = {{ rhel9_use_tailoring_file }}
+#      - rhel8_use_tailoring_file = {{ rhel8_use_tailoring_file }}
+#      - rhel7_use_tailoring_file = {{ rhel7_use_tailoring_file }}
+
+- name: install scap content
+  ansible.builtin.yum:
+    name: scap-security-guide
+    state: latest
+
+- name: copy rhel9 tailoring file if required
+  ansible.builtin.copy:
+    src: "{{ rhel9_tfile_source }}"
+    dest: "{{ rhel9_tfile_dest }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: 
+    - ansible_distribution_major_version == "9" 
+    - rhel9_use_tailoring_file == "true"
+
+- name: copy rhel8 tailoring file if required
+  ansible.builtin.copy:
+    src: "{{ rhel8_tfile_source }}"
+    dest: "{{ rhel8_tfile_dest }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: 
+    - ansible_distribution_major_version == "8" 
+    - rhel8_use_tailoring_file == "true"
+
+- name: copy rhel7 tailoring file if required
+  ansible.builtin.copy:
+    src: "{{ rhel7_tfile_source }}"
+    dest: "{{ rhel7_tfile_dest }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: 
+    - ansible_distribution_major_version == "7" 
+    - rhel7_use_tailoring_file == "true"
+
+
+- name: run the RHEL 9 scan without tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel9_profile_name }} --results {{ results_file }} --report {{ report_file }} {{ rhel9_source_file }} 2>/dev/null
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "9"
+    - rhel9_use_tailoring_file == "false"
+
+- name: run the RHEL 8 scan without tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel8_profile_name }} --results {{ results_file }} --report {{ report_file }} {{ rhel8_source_file }}
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "8"
+    - rhel8_use_tailoring_file == "false"
+
+- name: run the RHEL 7 scan without tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel7_profile_name }} --results {{ results_file }} --report {{ report_file }} {{ rhel7_source_file }} 2>/dev/null
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "7"
+    - rhel7_use_tailoring_file == "false"
+
+- name: run the RHEL 9 scan with tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel9_tailored_profile }} --tailoring-file {{ rhel9_tfile_dest }} --results {{ results_file }} --report {{ report_file }} {{ rhel9_source_file }} 2>/dev/null
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "9"
+    - rhel9_use_tailoring_file == "true"
+
+- name: run the RHEL 8 scan with tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel8_tailored_profile }} --tailoring-file {{ rhel8_tfile_dest }} --results {{ results_file }} --report {{ report_file }} {{ rhel8_source_file }}
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "8"
+    - rhel8_use_tailoring_file == "true"
+
+- name: run the RHEL 7 scan with tailoring
+  ansible.builtin.shell: oscap xccdf eval --profile {{ rhel7_tailored_profile }} --tailoring-file {{ rhel7_tfile_dest }} --results {{ results_file }} --report {{ report_file }} {{ rhel7_source_file }} 2>/dev/null
+  ignore_errors: True
+  when: 
+    - ansible_distribution_major_version == "7"
+    - rhel7_use_tailoring_file == "true"
+
+- name: copy scan report to report server
+  ansible.builtin.command: scp {{ report_file }} {{ destination }}
+  when: copy_reports == "true"
+

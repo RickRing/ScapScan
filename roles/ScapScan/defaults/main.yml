@@ -1,0 +1,22 @@
+---
+# RHEL 9
+rhel9_use_tailoring_file: "true"
+rhel9_tfile_source: ssg-rhel9-ds-tailoring-stig-gui.xml
+rhel9_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_rhel9
+rhel9_profile_name: "{{ rhel9_stig_gui }}"
+
+# RHEL 8
+rhel8_use_tailoring_file: "true"
+rhel8_tfile_source: ssg-rhel8-ds-tailoring-stig-gui.xml
+rhel8_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_rhel8
+rhel8_profile_name: "{{ rhel8_stig_gui }}"
+
+# RHEL 7
+rhel7_use_tailoring_file: "true"
+rhel7_tfile_source: ssg-rhel7-ds-tailoring-stig-gui.xml
+rhel7_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_customized_rhel7
+rhel7_profile_name: "{{ rhel7_stig_gui }}"
+
+destination: root@satellite6.home.rring:/var/www/html/pub/scapscans/
+copy_reports: "true"
+
