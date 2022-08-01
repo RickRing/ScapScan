@@ -2,4 +2,4 @@
 scap_use_tailoring_file: "true"
 destination: root@satellite6.home.rring:/var/www/html/pub/scapscans/
 copy_reports: "true"
-
+copy_command: "scp"

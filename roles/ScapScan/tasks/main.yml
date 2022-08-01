@@ -39,6 +39,6 @@
     - scap_use_tailoring_file == "true"
 
 - name: copy scan report to report server
-  ansible.builtin.command: scp {{ report_file }} {{ destination }}
+  ansible.builtin.command: "{{ copy_command }} {{ report_file }} {{ destination }}"
   when: copy_reports == "true"
 
