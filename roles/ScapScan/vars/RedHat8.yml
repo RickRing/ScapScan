@@ -1,0 +1,26 @@
+---
+# RHEL 8
+anssi_bp28_enhanced: xccdf_org.ssgproject.content_profile_anssi_bp28_enhanced
+anssi_bp28_high: xccdf_org.ssgproject.content_profile_anssi_bp28_high
+anssi_bp28_intermediary: xccdf_org.ssgproject.content_profile_anssi_bp28_intermediary
+anssi_bp28_minimal: xccdf_org.ssgproject.content_profile_anssi_bp28_minimal
+cis_server_l2: xccdf_org.ssgproject.content_profile_cis
+cis_server_l1: xccdf_org.ssgproject.content_profile_cis_server_l1
+cis_workstation_l1: xccdf_org.ssgproject.content_profile_cis_workstation_l1
+cis_workstation_l2: xccdf_org.ssgproject.content_profile_cis_workstation_l2
+cui: xccdf_org.ssgproject.content_profile_cui
+e8: xccdf_org.ssgproject.content_profile_e8
+hipaa: xccdf_org.ssgproject.content_profile_hipaa
+ism_o: xccdf_org.ssgproject.content_profile_ism_o
+ospp: xccdf_org.ssgproject.content_profile_ospp
+pci_dss: xccdf_org.ssgproject.content_profile_pci-dss
+stig: xccdf_org.ssgproject.content_profile_stig
+stig_gui: xccdf_org.ssgproject.content_profile_stig_gui
+
+scap_source_file: /usr/share/xml/scap/ssg/content/ssg-rhel8-ds-1.2.xml
+scap_tfile_source: ssg-rhel8-ds-tailoring-stig-gui.xml
+scap_tfile_dest: /tmp/{{ scap_tfile_source }}
+scap_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_rhel8
+scap_profile_name: "{{ stig_gui }}"
+
+

@@ -1,0 +1,31 @@
+---
+# RHEL 7
+C2S: xccdf_org.ssgproject.content_profile_C2S
+anssi_nt28_enhanced: xccdf_org.ssgproject.content_profile_anssi_nt28_enhanced
+anssi_nt28_high: xccdf_org.ssgproject.content_profile_anssi_nt28_high
+anssi_nt28_intermediary: xccdf_org.ssgproject.content_profile_anssi_nt28_intermediary
+anssi_nt28_minimal: xccdf_org.ssgproject.content_profile_anssi_nt28_minimal
+cis_server_l12: xccdf_org.ssgproject.content_profile_cis
+cis_server_l1: xccdf_org.ssgproject.content_profile_cis_server_l1
+cis_workstation_l1: xccdf_org.ssgproject.content_profile_cis_workstation_l1
+cis_workstation_l2: xccdf_org.ssgproject.content_profile_cis_workstation_l2
+cjis: xccdf_org.ssgproject.content_profile_cjis
+cui: xccdf_org.ssgproject.content_profile_cui
+e8: xccdf_org.ssgproject.content_profile_e8
+hipaa: xccdf_org.ssgproject.content_profile_hipaa
+ncp: xccdf_org.ssgproject.content_profile_ncp
+ospp: xccdf_org.ssgproject.content_profile_ospp
+pci_dss: xccdf_org.ssgproject.content_profile_pci-dss
+rhelh_stig: xccdf_org.ssgproject.content_profile_rhelh-stig
+rhelh_vpp: xccdf_org.ssgproject.content_profile_rhelh-vpp
+rht_ccp: xccdf_org.ssgproject.content_profile_rht-ccp
+standard: xccdf_org.ssgproject.content_profile_standard
+stig: xccdf_org.ssgproject.content_profile_stig
+stig_gui: xccdf_org.ssgproject.content_profile_stig_gui
+
+scap_source_file: /usr/share/xml/scap/ssg/content/ssg-rhel7-ds-1.2.xml
+scap_tfile_source: ssg-rhel7-ds-tailoring-stig-gui.xml
+scap_tfile_dest: /tmp/{{ scap_tfile_source }}
+scap_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_customized_rhel7
+scap_profile_name: "{{ stig_gui }}"
+

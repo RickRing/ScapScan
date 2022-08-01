@@ -1,0 +1,27 @@
+---
+# RHEL 9
+stig_gui: xccdf_org.ssgproject.content_profile_stig_gui
+stig: xccdf_org.ssgproject.content_profile_stig
+anssi_enahanced: xccdf_org.ssgproject.content_profile_anssi_bp28_enhanced
+anssi_high: xccdf_org.ssgproject.content_profile_anssi_bp28_high
+anssi_intermediate: xccdf_org.ssgproject.content_profile_anssi_bp28_intermediary
+anssi_minimal: xccdf_org.ssgproject.content_profile_anssi_bp28_minimal
+cis_level2_server: xccdf_org.ssgproject.content_profile_cis
+cis_level1_server: xccdf_org.ssgproject.content_profile_cis_server_l1
+cis_level1_workstation: xccdf_org.ssgproject.content_profile_cis_workstation_l1
+cis_level2_workstation: xccdf_org.ssgproject.content_profile_cis_workstation_l2
+cui: xccdf_org.ssgproject.content_profile_cui
+ascs_essential8: xccdf_org.ssgproject.content_profile_e8
+hippa: xccdf_org.ssgproject.content_profile_hipaa
+acsc_ism: xccdf_org.ssgproject.content_profile_ism_o
+general_purpose: xccdf_org.ssgproject.content_profile_ospp
+pci_dss: xccdf_org.ssgproject.content_profile_pci-dss
+
+scap_source_file: /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+scap_tfile_source: ssg-rhel9-ds-tailoring-stig-gui.xml
+scap_tfile_dest: /tmp/{{ scap_tfile_source }}
+scap_tailored_profile: xccdf_org.ssgproject.content_profile_stig_gui_rhel9
+scap_profile_name: "{{ stig_gui }}"
+
+ 
+
