@@ -1,0 +1,7 @@
+---
+- name: use ScapScan role
+  become: yes
+  hosts: all
+
+  roles:
+    - ScapScan
