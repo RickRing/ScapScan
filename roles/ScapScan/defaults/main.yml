@@ -1,5 +1,4 @@
 ---
-date_string: "{{ansible_date_time.date }}-{{ ansible_date_time.hour }}-{{ ansible_date_time.minute }}-{{ ansible_date_time.second }}"
 scap_use_tailoring_file: "true"
 destination: root@satellite6.home.rring:/var/www/html/pub/scapscans/
 copy_reports: "true"
