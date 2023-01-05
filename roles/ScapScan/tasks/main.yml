@@ -24,7 +24,7 @@
     mode: '0644'
   when: 
     - scap_use_tailoring_file == "true"
-    - scap_tile_source is defined
+    - scap_tfile_source is defined
 
 - name: run scan without tailoring
   ansible.builtin.shell: oscap xccdf eval --profile {{ scap_profile_name }} --results {{ results_file }} --report {{ report_file }} {{ scap_source_file }} 2>/dev/null
